@@ -1,12 +1,13 @@
-﻿using ProductDomain.Models;
+﻿using ProductDomain.Dtos.Response;
+using ProductDomain.Models;
 
 namespace ProductDomain.Interfaces.Repositories
 {
     public interface IProductRepository
     {
         Task CreateProductAsync(Product product);
-        Task<Product> GetProductByIdAsync(string id);
-        Task<List<Product>> GetProductsAsync();
+        Task<ProductDto> GetProductByIdAsync(string id);
+        Task<List<ProductDto>> GetProductsAsync();
         Task<bool> DeleteProductByIdAsync(string id);
     }
 }

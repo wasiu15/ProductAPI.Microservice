@@ -9,9 +9,9 @@ namespace ProductDomain.Models
         [Key]
         public long InventoryItemId { get; set; }
         public long ProductId { get; set; }
-        public string Location { get; set; }
+        public string Location { get; set; } = string.Empty;
         public int QuantityAvailable { get; set; }
-        public string Status { get; set; }
+        public string Status { get; set; } = string.Empty;
         public Product Product { get; set; }
         //  PRODUCT CAN HAVE MORE THAN ONE INVENTORY IS THE PURPOSE OF THE RELATIONSHIP
     }

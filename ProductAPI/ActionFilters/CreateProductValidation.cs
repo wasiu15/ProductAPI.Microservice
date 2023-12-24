@@ -8,12 +8,12 @@ namespace ProductAPI.ActionFilters
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            var model = context.ActionArguments["model"]; // Retrieve the model from action arguments
+            var model = context.ActionArguments["request"]; // Retrieve the model from action arguments
 
             if (model == null)
             {
@@ -36,11 +36,6 @@ namespace ProductAPI.ActionFilters
             else if (yourModel.Price < 1)
             {
                 context.Result = new BadRequestObjectResult("Price can not be less than 0 (zero)"); // Return a 400 Bad Request response
-                return;
-            }
-            else if (string.IsNullOrWhiteSpace(yourModel.Category))
-            {
-                context.Result = new BadRequestObjectResult("Category is required"); // Return a 400 Bad Request response
                 return;
             }
             else if (string.IsNullOrWhiteSpace(yourModel.ImageUrl))

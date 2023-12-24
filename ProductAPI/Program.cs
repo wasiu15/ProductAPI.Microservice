@@ -4,6 +4,7 @@ using ProductDomain.Interfaces.Services;
 using ProductInfrastructure.Data;
 using ProductInfrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using ProductAPI.ActionFilters;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -27,7 +28,8 @@ var database = client.GetDatabase(databaseName);
 builder.Services.AddSingleton<IMongoDatabase>(database);
 */
 
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<CreateProductValidation>();
+builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
 var dbConnection = configuration.GetConnectionString("SQL_CONNECTION");

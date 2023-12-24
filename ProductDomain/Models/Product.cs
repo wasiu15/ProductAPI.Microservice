@@ -13,11 +13,12 @@ namespace ProductDomain.Models
         public decimal Price { get; set; }
         public string Category { get; set; }
         public string ImageUrl { get; set; }    // No seperate model for Image because our design only have one image
-        public Discount Discount { get; set; }
-        public InventoryItem InventoryItem { get; set; }
-        public List<Review> ReviewStars { get; set; }   // one to many
+        //public Discount Discount { get; set; }
+        //public InventoryItem InventoryItem { get; set; }
+        //public List<Review> ReviewStars { get; set; }   // one to many
 
         [NotMapped] // Mark this property as not mapped to the database
-        public List<string> Tags { get; set; }
+        public ICollection<string> TagNames { get; set; }
+        public ICollection<Tag> Tags { get; set; }
     }
 }
