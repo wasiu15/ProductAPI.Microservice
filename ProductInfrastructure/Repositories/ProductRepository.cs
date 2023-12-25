@@ -19,14 +19,20 @@ namespace ProductInfrastructure.Repositories
             await _dbContext.Products.AddAsync(product);
         }
 
-        public Task<bool> DeleteProductByIdAsync(string id)
+        public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _dbContext.Products.Update(product);
         }
 
-        public Task<ProductDto> GetProductByIdAsync(string id)
+        public void DeleteProduct(Product product)
         {
-            throw new NotImplementedException();
+            _dbContext.Products.Remove(product);
+        }
+
+        public async Task<ProductDto> GetProductByIdAsync(string id)
+        {
+            var product = await _dbContext.Products.Where(product => product.ProductId.ToString() == id).FirstOrDefaultAsync();
+            return (ProductDto)product;
         }
 
         public async Task<List<ProductDto>> GetProductsAsync()

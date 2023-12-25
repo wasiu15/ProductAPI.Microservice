@@ -50,5 +50,17 @@ namespace ProductApplication.Services
             return product;
         }
 
+        public async Task<bool> UpdateProduct(Product product)
+        {
+            var checkIfProduc = await _repositoryManager.ProductRepository.GetProductByIdAsync(product.ProductId);
+            return product;
+        }
+
+        public async Task<bool> DeleteProductById(string id)
+        {
+            var product = await _repositoryManager.ProductRepository.GetProductByIdAsync(id);
+            return product;
+        }
+
     }
 }

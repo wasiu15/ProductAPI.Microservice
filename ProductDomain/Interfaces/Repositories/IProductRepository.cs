@@ -8,6 +8,7 @@ namespace ProductDomain.Interfaces.Repositories
         Task CreateProductAsync(Product product);
         Task<ProductDto> GetProductByIdAsync(string id);
         Task<List<ProductDto>> GetProductsAsync();
-        Task<bool> DeleteProductByIdAsync(string id);
+        void DeleteProductByIdAsync(Product product);
+        void UpdateProduct(Product product);
     }
 }
