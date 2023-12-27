@@ -42,24 +42,41 @@ namespace ProductApplication.Services
         public async Task<ProductDto> GetProductById(string id)
         {
             var product = await _repositoryManager.ProductRepository.GetProductByIdAsync(id);
-            return product;
+            return (ProductDto)product;
         }
         public async Task<List<ProductDto>> GetProducts()
         {
-            var product = await _repositoryManager.ProductRepository.GetProductsAsync();
-            return product;
+            var result = new List<ProductDto>();
+            var products = await _repositoryManager.ProductRepository.GetProductsAsync();
+            foreach (var product in products)
+            {
+                result.Add((ProductDto)product);
+            }
+            return result;
         }
 
         public async Task<bool> UpdateProduct(Product product)
         {
-            var checkIfProduc = await _repositoryManager.ProductRepository.GetProductByIdAsync(product.ProductId);
-            return product;
+            var checkIfProduc = await _repositoryManager.ProductRepository.GetProductByIdAsync(product.ProductId.ToString());
+            if(checkIfProduc == null)
+            {
+                return false;
+            }
+
+            _repositoryManager.ProductRepository.UpdateProductAsync(product);
+            return true;
         }
 
         public async Task<bool> DeleteProductById(string id)
         {
-            var product = await _repositoryManager.ProductRepository.GetProductByIdAsync(id);
-            return product;
+            var checkIfProduc = await _repositoryManager.ProductRepository.GetProductByIdAsync(id);
+            if (checkIfProduc == null)
+            {
+                return false;
+            }
+
+            _repositoryManager.ProductRepository.DeleteProductAsync(checkIfProduc);
+            return true;
         }
 
     }

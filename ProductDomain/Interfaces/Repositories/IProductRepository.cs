@@ -6,9 +6,9 @@ namespace ProductDomain.Interfaces.Repositories
     public interface IProductRepository
     {
         Task CreateProductAsync(Product product);
-        Task<ProductDto> GetProductByIdAsync(string id);
-        Task<List<ProductDto>> GetProductsAsync();
-        void DeleteProductByIdAsync(Product product);
-        void UpdateProduct(Product product);
+        Task<Product> GetProductByIdAsync(string id);
+        Task<List<Product>> GetProductsAsync();
+        void DeleteProductAsync(Product product);
+        void UpdateProductAsync(Product product);
     }
 }
